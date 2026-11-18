@@ -1,0 +1,233 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User account profile and farm metadata",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "farmName": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["userId", "farmName"]
+    },
+    "House": {
+      "title": "House",
+      "description": "Poultry building or shed structure",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "name": { "type": "string" },
+        "type": { "type": "string" },
+        "capacity": { "type": "number" },
+        "temperature": { "type": "number" },
+        "humidity": { "type": "number" },
+        "lightingHours": { "type": "number" },
+        "ventilationStatus": { "type": "string" },
+        "currentFlockId": { "type": "string" }
+      },
+      "required": ["id", "code", "name", "capacity"]
+    },
+    "Flock": {
+      "title": "Flock",
+      "description": "Batch/flock of poultry birds",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "code": { "type": "string" },
+        "name": { "type": "string" },
+        "houseId": { "type": "string" },
+        "type": { "type": "string" },
+        "breed": { "type": "string" },
+        "arrivalDate": { "type": "string" },
+        "initialCount": { "type": "number" },
+        "currentCount": { "type": "number" },
+        "ageWeeks": { "type": "number" },
+        "targetWeightGrams": { "type": "number" },
+        "currentWeightGrams": { "type": "number" },
+        "status": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "required": ["id", "code", "name", "houseId", "initialCount", "currentCount", "status"]
+    },
+    "WeightRecord": {
+      "title": "WeightRecord",
+      "description": "Batch weighing, uniformity, daily gain and FCR log",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string" },
+        "flockId": { "type": "string" },
+        "houseId": { "type": "string" },
+        "sampleSize": { "type": "number" },
+        "avgWeightGrams": { "type": "number" },
+        "targetWeightGrams": { "type": "number" },
+        "uniformityPercent": { "type": "number" },
+        "dailyGainGrams": { "type": "number" },
+        "fcr": { "type": "number" },
+        "notes": { "type": "string" }
+      },
+      "required": ["id", "flockId", "date", "avgWeightGrams"]
+    },
+    "HealthRecord": {
+      "title": "HealthRecord",
+      "description": "Sanitary and mortality monitoring log",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "flockId": { "type": "string" },
+        "date": { "type": "string" },
+        "mortalityCount": { "type": "number" },
+        "culledCount": { "type": "number" },
+        "suspectedCause": { "type": "string" },
+        "symptoms": { "type": "array" },
+        "autopsyNotes": { "type": "string" },
+        "recordedBy": { "type": "string" },
+        "actionsTaken": { "type": "string" }
+      },
+      "required": ["id", "flockId", "date", "mortalityCount"]
+    },
+    "VaccinationScheduleItem": {
+      "title": "VaccinationScheduleItem",
+      "description": "Prophylaxis schedule and vaccination entry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "flockId": { "type": "string" },
+        "targetAgeDays": { "type": "number" },
+        "targetAgeWeeks": { "type": "number" },
+        "scheduledDate": { "type": "string" },
+        "administeredDate": { "type": "string" },
+        "vaccineName": { "type": "string" },
+        "diseaseTarget": { "type": "string" },
+        "method": { "type": "string" },
+        "batchNumber": { "type": "string" },
+        "withdrawalPeriodDays": { "type": "number" },
+        "status": { "type": "string" },
+        "vetNotes": { "type": "string" }
+      },
+      "required": ["id", "flockId", "vaccineName", "diseaseTarget", "status"]
+    },
+    "TreatmentRecord": {
+      "title": "TreatmentRecord",
+      "description": "Veterinary treatment and medication record",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string" },
+        "flockId": { "type": "string" },
+        "diagnosis": { "type": "string" },
+        "productName": { "type": "string" },
+        "activeMolecule": { "type": "string" },
+        "dosage": { "type": "string" },
+        "route": { "type": "string" },
+        "durationDays": { "type": "number" },
+        "startDate": { "type": "string" },
+        "endDate": { "type": "string" },
+        "eggWithdrawalDays": { "type": "number" },
+        "meatWithdrawalDays": { "type": "number" },
+        "prescribingVet": { "type": "string" },
+        "status": { "type": "string" },
+        "notes": { "type": "string" }
+      },
+      "required": ["id", "flockId", "productName", "startDate", "status"]
+    },
+    "FeedInventory": {
+      "title": "FeedInventory",
+      "description": "Feed stock item in farm inventory",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "feedType": { "type": "string" },
+        "label": { "type": "string" },
+        "supplier": { "type": "string" },
+        "currentStockKg": { "type": "number" },
+        "alertThresholdKg": { "type": "number" },
+        "unitPricePerKg": { "type": "number" },
+        "lastRefillDate": { "type": "string" }
+      },
+      "required": ["id", "label", "currentStockKg", "alertThresholdKg"]
+    },
+    "FeedRecord": {
+      "title": "FeedRecord",
+      "description": "Daily feed and water consumption log",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "flockId": { "type": "string" },
+        "date": { "type": "string" },
+        "feedType": { "type": "string" },
+        "quantityKg": { "type": "number" },
+        "waterIntakeLiters": { "type": "number" },
+        "feedPerBirdGrams": { "type": "number" },
+        "waterFeedRatio": { "type": "number" },
+        "notes": { "type": "string" }
+      },
+      "required": ["id", "flockId", "date", "quantityKg"]
+    },
+    "FinancialTransaction": {
+      "title": "FinancialTransaction",
+      "description": "Farm financial income or expense ledger entry",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "date": { "type": "string" },
+        "type": { "type": "string" },
+        "category": { "type": "string" },
+        "amount": { "type": "number" },
+        "quantity": { "type": "number" },
+        "unit": { "type": "string" },
+        "description": { "type": "string" },
+        "clientOrSupplier": { "type": "string" },
+        "invoiceRef": { "type": "string" }
+      },
+      "required": ["id", "date", "type", "category", "amount", "description"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}/profile/{profileId}": {
+      "schema": { "$ref": "UserProfile" },
+      "description": "User profile metadata"
+    },
+    "/users/{userId}/houses/{houseId}": {
+      "schema": { "$ref": "House" },
+      "description": "Poultry houses configured for this user farm"
+    },
+    "/users/{userId}/flocks/{flockId}": {
+      "schema": { "$ref": "Flock" },
+      "description": "Flocks belonging to this user"
+    },
+    "/users/{userId}/weight_records/{recordId}": {
+      "schema": { "$ref": "WeightRecord" },
+      "description": "Batch weighing and growth records for the user"
+    },
+    "/users/{userId}/health_records/{recordId}": {
+      "schema": { "$ref": "HealthRecord" },
+      "description": "Sanitary and health records for the user"
+    },
+    "/users/{userId}/vaccinations/{vaccineId}": {
+      "schema": { "$ref": "VaccinationScheduleItem" },
+      "description": "Prophylaxis schedule items"
+    },
+    "/users/{userId}/treatments/{treatmentId}": {
+      "schema": { "$ref": "TreatmentRecord" },
+      "description": "Veterinary treatment records"
+    },
+    "/users/{userId}/feed_inventory/{feedId}": {
+      "schema": { "$ref": "FeedInventory" },
+      "description": "Feed inventory items"
+    },
+    "/users/{userId}/feed_records/{feedRecordId}": {
+      "schema": { "$ref": "FeedRecord" },
+      "description": "Feed and water consumption records"
+    },
+    "/users/{userId}/finances/{financeId}": {
+      "schema": { "$ref": "FinancialTransaction" },
+      "description": "Income and expense transactions"
+    }
+  }
+}

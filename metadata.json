@@ -1,0 +1,6 @@
+{
+  "name": "Avicool - Gestion de Ferme Avicole",
+  "description": "Logiciel complet de gestion d'élevage avicole avec suivi de la production d'œufs, santé du cheptel, alertes sanitaires et prophylaxie.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
